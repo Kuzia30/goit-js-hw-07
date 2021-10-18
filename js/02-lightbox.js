@@ -18,3 +18,16 @@ function createElement(el) {
   link.appendChild(image);
   galeryWrap.appendChild(link);
 }
+
+galeryWrap.addEventListener('click', onPreventDefault);
+
+function onPreventDefault(event) {
+    event.preventDefault();
+}
+
+const lightbox = new SimpleLightbox('.gallery a');
+
+lightbox.on('show.simplelightbox', () => {
+    lightbox.options.captionsData = 'alt';
+    lightbox.options.captionDelay = '250';
+})
