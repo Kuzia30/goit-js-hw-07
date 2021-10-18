@@ -28,8 +28,10 @@ function toggleInstanceImage(event) {
     <div class="modal">
         <img
       src=${event.target.dataset.source}
+      alt=${event.target.alt}
     />
-    </div>`);
+    </div>`
+  );
 
   instance.show();
 
