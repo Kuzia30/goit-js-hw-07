@@ -36,7 +36,7 @@ function toggleInstanceImage(event) {
 
   const modalEl = instance.element(".modal");
   modalEl.addEventListener("click", onCloseInstanceImage);
-  document.addEventListener("keydown", onCloseInstanceImage);
+  window.addEventListener("keydown", onCloseInstanceImage);
 
   function onCloseInstanceImage(evt) {
     if (evt.target.nodeName === "IMG" || evt.code === "Escape") {
@@ -44,3 +44,5 @@ function toggleInstanceImage(event) {
     }
   }
 }
+
+window.removeEventListener("keydown", onCloseInstanceImage);
