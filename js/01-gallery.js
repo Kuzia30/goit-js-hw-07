@@ -42,7 +42,6 @@ function toggleInstanceImage(event) {
     if (evt.target.nodeName === "IMG" || evt.code === "Escape") {
       instance.close();
     }
-  }
+    window.removeEventListener("keydown", onCloseInstanceImage);
+    }
 }
-
-window.removeEventListener("keydown", onCloseInstanceImage);
