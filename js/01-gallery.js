@@ -2,22 +2,20 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 const galeryWrap = document.querySelector(".gallery");
 
-galleryItems.forEach(createElement);
+const murkup = galleryItems.map(createElement).join('');
 
-function createElement(el) {
-  const link = document.createElement("a");
-  link.classList.add("gallery__link");
-  link.href = el.original;
-
-  const image = document.createElement("img");
-  image.src = el.preview;
-  image.alt = el.description;
-  image.classList.add("gallery__image");
-  image.dataset.source = el.original;
-
-  link.appendChild(image);
-  galeryWrap.appendChild(link);
+function createElement({preview, original, description}) {
+return `<a class="gallery__link" href=${original}>
+    <img
+      class="gallery__image"
+      src=${preview}
+      data-source=${original}
+      alt=${description}
+    />
+  </a>`
 }
+
+galeryWrap.insertAdjacentHTML("beforeend", murkup);
 
 galeryWrap.addEventListener("click", toggleInstanceImage);
 
@@ -29,6 +27,7 @@ function toggleInstanceImage(event) {
         <img
       src=${event.target.dataset.source}
       alt=${event.target.alt}
+      height = '720'
     />
     </div>`
   );
