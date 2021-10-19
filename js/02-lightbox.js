@@ -3,21 +3,19 @@ import { galleryItems } from './gallery-items.js';
 
 const galeryWrap = document.querySelector(".gallery");
 
-galleryItems.forEach(createElement);
+const murkup = galleryItems.map(createElement).join('');
 
-function createElement(el) {
-  const link = document.createElement("a");
-  link.classList.add("gallery__link");
-  link.href = el.original;
-
-  const image = document.createElement("img");
-  image.src = el.preview;
-  image.alt = el.description;
-  image.classList.add("gallery__image");
-
-  link.appendChild(image);
-  galeryWrap.appendChild(link);
+function createElement({preview, original, description}) {
+return `<a class="gallery__item" href=${original}>
+    <img
+      class="gallery__image"
+      src=${preview}
+      alt=${description}
+    />
+  </a>`
 }
+
+galeryWrap.insertAdjacentHTML("beforeend", murkup);
 
 galeryWrap.addEventListener('click', onPreventDefault);
 
