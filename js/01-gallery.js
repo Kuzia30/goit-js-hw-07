@@ -2,17 +2,17 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 const galeryWrap = document.querySelector(".gallery");
 
-const murkup = galleryItems.map(createElement).join('');
+const murkup = galleryItems.map(createElement).join("");
 
-function createElement({preview, original, description}) {
-return `<a class="gallery__link" href=${original}>
+function createElement({ preview, original, description }) {
+  return `<a class="gallery__link" href=${original}>
     <img
       class="gallery__image"
       src=${preview}
       data-source=${original}
       alt=${description}
     />
-  </a>`
+  </a>`;
 }
 
 galeryWrap.insertAdjacentHTML("beforeend", murkup);
@@ -29,8 +29,7 @@ function toggleInstanceImage(event) {
       alt=${event.target.alt}
       height = '720'
     />
-    </div>`
-  );
+    </div>`);
 
   instance.show();
 
@@ -39,9 +38,13 @@ function toggleInstanceImage(event) {
   window.addEventListener("keydown", onCloseInstanceImage);
 
   function onCloseInstanceImage(evt) {
-    if (evt.target.nodeName === "IMG" || evt.code === "Escape") {
+    if (
+      evt.target.nodeName === "IMG" ||
+      evt.code === "Escape" ||
+      evt.currentTarget.nodeName === "DIV"
+    ) {
       instance.close();
+      window.removeEventListener("keydown", onCloseInstanceImage);
     }
-    window.removeEventListener("keydown", onCloseInstanceImage);
-    }
+  }
 }
